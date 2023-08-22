@@ -1,17 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:getx_todo_list/app/modules/home/controller.dart';
+import 'package:getx_todo_list/app/core/utils/extensions.dart';
+import 'package:getx_todo_list/app/modules/home/widgets/add_card.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends GetView<HomeController> {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home Page'),
-        centerTitle: true,
-      ),
-      body: const Center(
-        child: Text('Home Page'),
+      body: SafeArea(
+        child: ListView(
+          children: [
+            Padding(
+              padding: EdgeInsets.all(4.0.wp),
+              child: Text(
+                'My List',
+                style: TextStyle(
+                  fontSize: 24.0.sp,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            GridView.count(
+              padding: EdgeInsets.symmetric(horizontal: 2.0.wp),
+              crossAxisCount: 2,
+              shrinkWrap: true,
+              physics: const ClampingScrollPhysics(),
+              children: [
+                AddCard(),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
